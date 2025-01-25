@@ -118,14 +118,14 @@
 
         .carousel-item {
             flex: 0 0 auto;
-            width: 200px; /* Ajustado para uma largura mais razoável */
+            width: 200px;
             text-align: center;
             transition: transform 0.3s ease;
         }
 
         .carousel-item img {
             width: 100%;
-            height: 120px; /* Mantido tamanho ajustado para uma altura proporcional */
+            height: 120px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
             transition: transform 0.3s ease;
@@ -137,7 +137,7 @@
 
         .carousel-item p {
             margin-top: 5px;
-            font-size: 12px; /* Ajustado o tamanho da fonte para encaixar melhor */
+            font-size: 12px;
             font-weight: 500;
         }
 
@@ -168,14 +168,24 @@
             right: 0;
         }
 
+    .explore-button-container {
+    position: absolute; /* Fixação do contêiner na tela */
+    bottom: 50px; /* Ajuste a distância da parte inferior */
+    left: 20px; /* Ajuste a distância da lateral esquerda */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Espaçamento entre os botões */
+}
+
         .explore-button {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             width: 200px;
-            margin: 30px 30px 50px 30px; /* Aumentado o margin-bottom para mais distância */
             padding: 15px 20px;
             font-size: 18px;
             font-weight: 600;
-            text-align: center;
             color: white;
             background: linear-gradient(to bottom, #1f80e0, #2ecc71);
             border: none;
@@ -191,6 +201,18 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
         }
 
+        .google-icon {
+    width: 40px;  /* Tamanho do ícone */
+    height: 35px; /* Tamanho do ícone */
+    margin-left: 5px; /* Distância entre o ícone e o botão */
+    display: inline-block;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animação de transformação e sombra */
+}
+
+.google-icon:hover {
+    transform: scale(1.1); /* Aumenta o tamanho do ícone ao passar o mouse */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7); /* Sombra ao passar o mouse */
+}
     </style>
 </head>
 <body>
@@ -240,7 +262,12 @@
         <button class="carousel-arrow right-arrow" id="nextButton">&#10095;</button>
     </div>
 
-    <a href="https://streamplus360.github.io/Stream/" class="explore-button">Explorar Agora ;)</a>
+    <div class="explore-button-container">
+        <a href="https://streamplus360.github.io/Stream/" class="explore-button">Explorar Agora ;)</a>
+        <a href="https://accounts.google.com/ServiceLogin" target="_blank">
+            <img src="https://img.icons8.com/?size=512&id=17949&format=png" class="google-icon" alt="Google Login">
+        </a>
+    </div>
 
     <script>
         const prevButton = document.getElementById('prevButton');
@@ -248,8 +275,8 @@
         const carouselContainer = document.getElementById('carouselContainer');
         const items = document.querySelectorAll('.carousel-item');
         
-        const itemWidth = items[0].offsetWidth + 15; // Considerando o gap entre os itens
-        const maxScroll = (items.length - 3) * itemWidth; // Limite de movimento (ajuste para quantidade de itens visíveis)
+        const itemWidth = items[0].offsetWidth + 15;
+        const maxScroll = (items.length - 3) * itemWidth;
 
         let scrollAmount = 0;
 
@@ -269,8 +296,6 @@
     </script>
 </body>
 </html>
-
-
 
 <!-- Bloco de código independente para efeito sonoro de hover e clique -->
 <audio id="background-music" src="background.mp3" preload="auto" loop></audio>
@@ -294,16 +319,23 @@
     window.addEventListener('load', () => {
         const backgroundMusic = document.getElementById('background-music');
         backgroundMusic.play();
-    });
 
-    // Adicionando o evento de hover e clique nos itens do carousel
-    document.querySelectorAll('.carousel-item').forEach(item => {
-        item.addEventListener('mouseenter', playHoverSound); // Som de hover
-        item.addEventListener('click', playClickSound);    // Som de clique
-    });
+        // Adicionando o evento de hover e clique nos itens do carousel
+        document.querySelectorAll('.carousel-item').forEach(item => {
+            item.addEventListener('mouseenter', playHoverSound); // Som de hover
+            item.addEventListener('click', playClickSound);    // Som de clique
+        });
 
-    // Adicionando o evento de hover e clique no botão "Explorar Agora"
-    const exploreButton = document.querySelector('.explore-button');
-    exploreButton.addEventListener('mouseenter', playHoverSound); // Som de hover
-    exploreButton.addEventListener('click', playClickSound);    // Som de clique
+        // Adicionando o evento de hover e clique no botão "Explorar Agora"
+        const exploreButton = document.querySelector('.explore-button');
+        exploreButton.addEventListener('mouseenter', playHoverSound); // Som de hover
+        exploreButton.addEventListener('click', playClickSound);    // Som de clique
+
+        // Verificando se o ícone do Google existe e adicionando os eventos de hover e clique
+        const googleButton = document.querySelector('.google-icon');
+        if (googleButton) {
+            googleButton.addEventListener('mouseenter', playHoverSound); // Som de hover
+            googleButton.addEventListener('click', playClickSound);    // Som de clique
+        }
+    });
 </script>
