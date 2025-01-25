@@ -269,3 +269,41 @@
     </script>
 </body>
 </html>
+
+
+
+<!-- Bloco de código independente para efeito sonoro de hover e clique -->
+<audio id="background-music" src="background.mp3" preload="auto" loop></audio>
+<audio id="hover-sound" src="https://www.soundjay.com/buttons/button-11.wav" preload="auto"></audio>
+<audio id="click-sound" src="FADE.mp3" preload="auto"></audio>
+
+<script>
+    // Função para tocar o som de hover
+    function playHoverSound() {
+        const sound = document.getElementById('hover-sound');
+        sound.play();
+    }
+
+    // Função para tocar o som de clique
+    function playClickSound() {
+        const sound = document.getElementById('click-sound');
+        sound.play();
+    }
+
+    // Função para tocar a música de fundo quando a página carregar
+    window.addEventListener('load', () => {
+        const backgroundMusic = document.getElementById('background-music');
+        backgroundMusic.play();
+    });
+
+    // Adicionando o evento de hover e clique nos itens do carousel
+    document.querySelectorAll('.carousel-item').forEach(item => {
+        item.addEventListener('mouseenter', playHoverSound); // Som de hover
+        item.addEventListener('click', playClickSound);    // Som de clique
+    });
+
+    // Adicionando o evento de hover e clique no botão "Explorar Agora"
+    const exploreButton = document.querySelector('.explore-button');
+    exploreButton.addEventListener('mouseenter', playHoverSound); // Som de hover
+    exploreButton.addEventListener('click', playClickSound);    // Som de clique
+</script>
