@@ -172,14 +172,14 @@
         .explore-button-container {
             position: absolute;
             bottom: 50px;
-            left: 20px;
+            left: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
         }
 
-        .explore-button {
+       .explore-button {
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -188,19 +188,20 @@
             font-size: 18px;
             font-weight: 600;
             color: white;
-            background: linear-gradient(to bottom, #1f80e0, #2ecc71);
-            border: none;
-            border-radius: 25px;
+            background: linear-gradient(to top, #1e3c72, #2a5298); /* Gradiente de azuis */
+            border: 1px solid transparent;
+            border-radius: 10px;
             cursor: pointer;
             text-decoration: none;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
 
-        .explore-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
-        }
+.explore-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+    background: linear-gradient(to top, #2a5298, #1e3c72); /* Gradiente invertido para o hover */
+}
 
         .google-icon {
             width: 40px;
@@ -257,6 +258,14 @@
                 <img src="https://i.ibb.co/r4WvjMp/Picture1.png" alt="Categoria 7">
                 <p>Pixart</p>
             </div>
+            <div class="carousel-item">
+                <img src="https://sm.ign.com/ign_br/screenshot/default/tudo-sobre-paramount-plus-brasil_57ym.jpg" alt="Categoria 7">
+                <p>Paramount+</p>
+            </div>
+            <div class="carousel-item">
+                <img src="https://i.ibb.co/0r8NYkT/apple-tv-e7aqjl2rqzau-og.png" alt="Categoria 7">
+                <p>AppleTV+</p>
+            </div>
         </div>
 
         <button class="carousel-arrow left-arrow" id="prevButton">&#10094;</button>
@@ -264,7 +273,7 @@
     </div>
 
     <div class="explore-button-container">
-        <a href="https://streamplus360.github.io/stream/" class="explore-button">Explorar Agora ;)</a>
+        <a href="https://streamplus360.github.io/stream/" class="explore-button">Explorar Agora</a>
         <a href="https://accounts.google.com/ServiceLogin" target="_blank">
             <img src="https://img.icons8.com/?size=512&id=17949&format=png" class="google-icon" alt="Google Login">
         </a>
