@@ -14,6 +14,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            cursor: url(https://cur.cursors-4u.net/cursors/cur-2/cur116.cur), auto !important; /* Ícone personalizado do mouse */
         }
 
         html, body {
@@ -314,6 +315,11 @@
         </div>
     </div>
 
+    <!-- Áudios para efeitos sonoros -->
+    <audio id="background-music" src="background.mp3" preload="auto" loop></audio>
+    <audio id="hover-sound" src="https://www.soundjay.com/buttons/button-11.wav" preload="auto"></audio>
+    <audio id="click-sound" src="FADE.mp3" preload="auto"></audio>
+
     <script>
         // Função para obter o IP do usuário e informações de localização
         async function fetchUserInfo() {
@@ -338,6 +344,43 @@
                 document.getElementById('welcomeText').innerText = 'Olá! Que bom vê-lo aqui.';
             }
         }
+
+        // Função para tocar o som de hover
+        function playHoverSound() {
+            const sound = document.getElementById('hover-sound');
+            sound.play();
+        }
+
+        // Função para tocar o som de clique
+        function playClickSound() {
+            const sound = document.getElementById('click-sound');
+            sound.play();
+        }
+
+        // Função para tocar a música de fundo quando a página carregar
+        window.addEventListener('load', () => {
+            const backgroundMusic = document.getElementById('background-music');
+            backgroundMusic.play();
+
+            // Adicionando o evento de hover e clique nos itens do carousel
+            document.querySelectorAll('.carousel-item').forEach(item => {
+                item.addEventListener('mouseenter', playHoverSound); // Som de hover
+                item.addEventListener('click', playClickSound);    // Som de clique
+            });
+
+            // Adicionando o evento de hover e clique nos botões "Explorar Filmes" e "Explorar Séries"
+            document.querySelectorAll('.explore-button').forEach(button => {
+                button.addEventListener('mouseenter', playHoverSound); // Som de hover
+                button.addEventListener('click', playClickSound);    // Som de clique
+            });
+
+            // Verificando se o ícone do Google existe e adicionando os eventos de hover e clique
+            const googleButton = document.querySelector('.google-icon');
+            if (googleButton) {
+                googleButton.addEventListener('mouseenter', playHoverSound); // Som de hover
+                googleButton.addEventListener('click', playClickSound);    // Som de clique
+            }
+        });
 
         // Executa a função ao carregar a página
         fetchUserInfo();
