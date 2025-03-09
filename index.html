@@ -323,13 +323,13 @@
                 const ipData = await ipResponse.json();
                 const userIP = ipData.ip;
 
-                // Obtém informações de localização e provedor de internet
-                const locationResponse = await fetch(`http://ip-api.com/json/${userIP}?fields=status,message,country,regionName,city,isp`);
+                // Obtém informações de localização e provedor de internet usando ipapi.co
+                const locationResponse = await fetch(`https://ipapi.co/${userIP}/json/`);
                 const locationData = await locationResponse.json();
 
-                if (locationData.status === 'success') {
-                    const { city, regionName, country, isp } = locationData;
-                    document.getElementById('welcomeText').innerText = `Olá! Seu IP:🛜 ${userIP} | Local: 🏠 ${city}, ${regionName}, ${country} | Provedor: 🌐 ${isp}`;
+                if (locationData.ip) {
+                    const { city, region, country_name, org } = locationData;
+                    document.getElementById('welcomeText').innerText = `Olá! Seu IP: 🛜 ${userIP} | Local: 🏠 ${city}, ${region}, ${country_name} | Provedor: 🌐 ${org}`;
                 } else {
                     document.getElementById('welcomeText').innerText = `Olá! Seu IP: ${userIP} | Local: Não disponível | Provedor: Não disponível`;
                 }
